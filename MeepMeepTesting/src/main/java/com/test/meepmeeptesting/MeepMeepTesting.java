@@ -9,9 +9,9 @@ import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 public class MeepMeepTesting {
 
     public static void main(String[] args){
-        MeepMeep meepMeep = new MeepMeep(800);
-
-
+        // Set window size to 70% of screen size
+        int windowWidth = (int) (0.3 * java.awt.Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+        MeepMeep meepMeep = new MeepMeep(windowWidth);
 
 
         /*
