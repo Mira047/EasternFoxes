@@ -140,7 +140,7 @@ public class TeleopKarpatia extends LinearOpMode {
         brat.setTargetPosition(0);
         brat.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         brat.setPower(bratPowerUp);
-        brat.setDirection(DcMotorSimple.Direction.REVERSE);
+        brat.setDirection(DcMotorSimple.Direction.FORWARD);
 
         clawLeft.setPosition(clawLeftClose);
         clawRight.setPosition(clawRightClose);
@@ -161,10 +161,11 @@ public class TeleopKarpatia extends LinearOpMode {
             telemetry.addData("brat position",brat.getCurrentPosition());
             telemetry.addData("brat target",brat.getTargetPosition());
             telemetry.update();
-            speed = base_speed + base_speed * gamepad2.right_trigger - (base_speed/2) * gamepad2.left_trigger;
+            speed = base_speed + 10 * gamepad2.right_trigger;
             if(speed>1){
                 speed = 1;
             }
+
             if(!drive.isBusy() && driveIsBusy == false && MOD_FIXARE == 0) {
                 if (gamepad2.dpad_left){
                     drive.setWeightedDrivePower(
@@ -481,12 +482,12 @@ public class TeleopKarpatia extends LinearOpMode {
         //drive.turn(Math.toRadians(-90));
         //drive.update();
         //brat.setTargetPosition(brat.getTargetPosition() + 250);
-        corectie(-1.2);
+        corectie(-1.5);
     }
 
     void onGamepad2_X(){
         //brat.setTargetPosition(brat.getTargetPosition() - 250);
-        corectie(1.2);
+        corectie(1.5);
         //drive.turn(Math.toRadians(90));
         //drive.update();
     }

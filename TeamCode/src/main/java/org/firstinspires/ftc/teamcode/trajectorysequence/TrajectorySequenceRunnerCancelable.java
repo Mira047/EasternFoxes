@@ -55,7 +55,7 @@ public class TrajectorySequenceRunnerCancelable {
 
   List<TrajectoryMarker> remainingMarkers = new ArrayList<>();
 
-  private final FtcDashboard dashboard;
+  private FtcDashboard dashboard;
   private final LinkedList<Pose2d> poseHistory = new LinkedList<>();
 
   public TrajectorySequenceRunnerCancelable(TrajectoryFollower follower, PIDCoefficients headingPIDCoefficients) {
@@ -66,8 +66,10 @@ public class TrajectorySequenceRunnerCancelable {
 
     clock = NanoClock.system();
 
-    dashboard = FtcDashboard.getInstance();
-    dashboard.setTelemetryTransmissionInterval(25);
+    try {
+      dashboard = FtcDashboard.getInstance();
+      dashboard.setTelemetryTransmissionInterval(25);
+    } catch (Exception e) {}
   }
 
   public void followTrajectorySequenceAsync(TrajectorySequence trajectorySequence) {
@@ -195,7 +197,8 @@ public class TrajectorySequenceRunnerCancelable {
 
     draw(fieldOverlay, currentTrajectorySequence, currentSegment, targetPose, poseEstimate);
 
-    dashboard.sendTelemetryPacket(packet);
+    if(dashboard != null)
+      dashboard.sendTelemetryPacket(packet);
 
     return driveSignal;
   }

@@ -140,7 +140,7 @@ public class Teleop2023 extends LinearOpMode {
         brat.setTargetPosition(0);
         brat.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         brat.setPower(bratPowerUp);
-        brat.setDirection(DcMotorSimple.Direction.REVERSE);
+        brat.setDirection(DcMotorSimple.Direction.FORWARD);
 
         clawLeft.setPosition(clawLeftClose);
         clawRight.setPosition(clawRightClose);

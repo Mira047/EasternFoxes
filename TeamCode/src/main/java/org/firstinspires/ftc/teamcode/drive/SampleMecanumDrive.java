@@ -55,7 +55,7 @@ import java.util.List;
 public class SampleMecanumDrive extends MecanumDrive {
     public static PIDCoefficients TRANSLATIONAL_PID = new PIDCoefficients(6, 0, 0.2); // 3
     public static PIDCoefficients HEADING_PID = new PIDCoefficients(9,0,0.15);
-    //new PIDCoefficients(10, 0, 0); // 8
+        //new PIDCoefficients(10, 0, 0); // 8
 
     public static double LATERAL_MULTIPLIER = 1;
 
@@ -171,7 +171,6 @@ public class SampleMecanumDrive extends MecanumDrive {
         //setLocalizer(new ThreeWheelLocalizer(hardwareMap));
 
         trajectorySequenceRunner = new TrajectorySequenceRunnerCancelable(follower, HEADING_PID);
-
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {
@@ -249,6 +248,7 @@ public class SampleMecanumDrive extends MecanumDrive {
     }
 
     public boolean isBusy() {
+        if(trajectorySequenceRunner == null) return true;
         return trajectorySequenceRunner.isBusy();
     }
 
